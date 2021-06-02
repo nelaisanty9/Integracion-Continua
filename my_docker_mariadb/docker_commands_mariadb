@@ -1,0 +1,7 @@
+#create local network
+docker network create tulip-net
+
+#create mariadb image from dockerfile
+docker build -t my_docker_mariadb .
+docker run --name mariadb -ti --net local_docker_CI -d -p 3306:3306 my_docker_mariadb
+docker exec -it mariadb bash

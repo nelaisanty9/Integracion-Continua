@@ -1,0 +1,8 @@
+#create local network
+docker network create tulip-net
+
+#create python image from dockerfile
+docker build -t my_docker_python .
+docker run --name python2 -it -d --net local_docker_CI my_docker_python
+docker exec -it python2 bash
+
