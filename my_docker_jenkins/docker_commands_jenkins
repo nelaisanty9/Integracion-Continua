@@ -1,0 +1,13 @@
+#crear red local en docker
+docker network create local_docker_CI 
+
+#crear imágen de mariadb en docker
+docker build -t my_docker_jenkins my_docker_jenkins/
+
+#crear contenedor de docker en modo interactivo, que corra en segundo plano y que esté anclado a la red previamente creada
+docker run --name jenkins -ti --net local_docker_CI -d -p 8080:8080 -p 50000:50000 my_docker_jenkins
+
+#correr contenedor de manera interactiva
+docker exec -it jenkins bash 
+
+#entrar al navegador en localhost:8080
