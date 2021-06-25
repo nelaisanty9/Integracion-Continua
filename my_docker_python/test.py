@@ -2,7 +2,7 @@ import mariadb
 import sys
 def conectar():
     try:
-        conn = mariadb.connect(user = "root", database ="testDB", host = "mariadb", password = $
+        conn = mariadb.connect(user = "root", database ="testDB", host = "mariadb", password = "test123"
     except mariadb.error as e:
         print(f"Error connecting to MariaDB Platform: {e}")
         sys.exit(1)

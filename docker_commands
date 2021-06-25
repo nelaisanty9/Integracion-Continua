@@ -1,13 +1,21 @@
-#create local network
-docker network create local_docker_CI
+#crear red local en docker
+docker network create local_docker_CI 
 
 
-#create python image from dockerfile
-docker build -t my_docker_python .
+#crear imágen de python en docker
+docker build -t my_docker_python my_docker_python/
+
+#crear contenedor de docker en modo interactivo, que corra en segundo plano y que esté anclado a la red previamente creada
 docker run --name python -it -d --net local_docker_CI my_docker_python
+
+#correr contenedor de manera interactiva
 docker exec -it python bash
 
-#create mariadb image from dockerfile
-docker build -t my_docker_mariadb .
+#crear imágen de mariadb en docker
+docker build -t my_docker_mariadb my_docker_mariadb/
+
+#crear contenedor de docker en modo interactivo, que corra en segundo plano y que esté anclado a la red previamente creada
 docker run --name mariadb -ti --net local_docker_CI -d -p 3306:3306 my_docker_mariadb
+
+#correr contenedor de manera interactiva
 docker exec -it mariadb bash

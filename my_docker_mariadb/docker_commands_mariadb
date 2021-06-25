@@ -1,7 +1,12 @@
-#create local network
-docker network create tulip-net
+#crear red local en docker
+docker network create local_docker_CI 
 
-#create mariadb image from dockerfile
-docker build -t my_docker_mariadb .
+
+#crear imágen de mariadb en docker (se hace desde la carpeta raiz del proyecto)
+docker build -t my_docker_mariadb my_docker_mariadb/
+
+#crear contenedor de docker en modo interactivo, que corra en segundo plano y que esté anclado a la red previamente creada
 docker run --name mariadb -ti --net local_docker_CI -d -p 3306:3306 my_docker_mariadb
+
+#correr contenedor de manera interactiva
 docker exec -it mariadb bash

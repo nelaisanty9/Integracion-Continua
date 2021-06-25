@@ -1,8 +1,12 @@
-#create local network
-docker network create tulip-net
+#crear red local en docker
+docker network create local_docker_CI 
 
-#create python image from dockerfile
-docker build -t my_docker_python .
-docker run --name python2 -it -d --net local_docker_CI my_docker_python
-docker exec -it python2 bash
 
+#crear imágen de python en docker (se hace desde la carpeta raiz del proyecto)
+docker build -t my_docker_python my_docker_python/
+
+#crear contenedor de docker en modo interactivo, que corra en segundo plano y que esté anclado a la red previamente creada
+docker run --name python -it -d --net local_docker_CI my_docker_python
+
+#correr contenedor de manera interactiva
+docker exec -it python bash
